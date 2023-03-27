@@ -25,7 +25,7 @@ export function getAccountFromSeed(
 function deriveSeed(seed, walletIndex, derivationPath, accountIndex) {
   switch (derivationPath) {
     case DERIVATION_PATH.deprecated:
-      	
+      const path = `m/501'/${walletIndex}'/0/${accountIndex}`;
       return bip32.fromSeed(seed).derivePath(path).privateKey;
     case DERIVATION_PATH.bip44:
       const path44 = `m/44'/501'/${walletIndex}'`;
@@ -40,12 +40,8 @@ function deriveSeed(seed, walletIndex, derivationPath, accountIndex) {
 
 export class LocalStorageWalletProvider {
   constructor(args) {
+    const { seed } = getUnlockedMnemonicAndSeed();
     this.account = args.account;
-    this.publicKey = this.account.publicKey;
-  }
-
-  init = async () => {
-    const { seed } = await getUnlockedMnemonicAndSeed();
     this.listAddresses = async (walletCount) => {
       const seedBuffer = Buffer.from(seed, 'hex');
       return [...Array(walletCount).keys()].map((walletIndex) => {
@@ -54,8 +50,15 @@ export class LocalStorageWalletProvider {
         return { index: walletIndex, address, name };
       });
     };
+  }
+
+  init = async () => {
     return this;
   };
+
+  get publicKey() {
+    return this.account.publicKey;
+  }
 
   signTransaction = async (transaction) => {
     transaction.partialSign(this.account);
