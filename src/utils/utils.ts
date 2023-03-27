@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { Keypair, Connection, PublicKey } from '@solana/web3.js';
 import { useMediaQuery } from '@material-ui/core';
 import * as bs58 from 'bs58';
-
+import { useCallback, useEffect, useRef, useState } from 'react';
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
