@@ -1,5 +1,5 @@
 {
-  "algorithms": ["br"],
+  "algorithms": ["br", "gz"],
   "filetypes": [
     ".js",
 	".jsx",
@@ -8,5 +8,5 @@
 	".tx",
 	".tsx"],
   "directory": "/build",
-  "retainUncompressedFiles": false
+  "retainUncompressedFiles": true
 }
