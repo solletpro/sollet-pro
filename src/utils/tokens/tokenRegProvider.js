@@ -1,0 +1,1 @@
+export { TokenRegistryProvider as default } from "./names";

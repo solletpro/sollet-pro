@@ -1,0 +1,5 @@
+language: node_js
+node_js: 16.15.0
+dist: bionic
+cache: node
+script: npm run build
