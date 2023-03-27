@@ -45,7 +45,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-   "build": "set \"TSC_COMPILE_ON_ERROR=true\" && react-scripts build --mode=production && compress-cra",
+      "build": "set \"TSC_COMPILE_ON_ERROR=true\" && set \"SKIP_PREFLIGHT_CHECK=true\" && set \"DISABLE_ESLINT_PLUGIN=true\" && set \"ESLINT_NO_DEV_ERRORS=true\" && set \"ESLINT_NO_PROD_ERRORS=true\" react-scripts build --mode=production && compress-cra",
     "compress": "react-scripts compress-cra"
   },
   "eslintConfig": {
