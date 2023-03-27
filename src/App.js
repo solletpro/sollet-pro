@@ -25,7 +25,7 @@ import LoginPage from './pages/LoginPage';
 import ConnectionsPage from './pages/ConnectionsPage';
 import { isExtension } from './utils/utils';
 import { PageProvider, usePage } from './utils/page';
-const TokenRegistryProvider = React.lazy(() => import("./utils/tokens/tokenRegProvider"));
+const TokenRegistryProvider = React.lazy(() => import('./utils/tokens/tokenRegProvider'));
 export default function App() {
   // TODO: add toggle for dark mode
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
