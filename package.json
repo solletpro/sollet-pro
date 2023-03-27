@@ -45,7 +45,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build --mode=production && compress-cra",
+    "build": "react-scripts build --mode=production",
     "compress": "react-scripts compress-cra"
   },
   "eslintConfig": {
